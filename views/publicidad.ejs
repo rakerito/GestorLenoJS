@@ -1,0 +1,30 @@
+<%- include("templates/header.ejs") %>
+<body class="publicidad-page">
+  <div class="container">
+    <div class="card">
+      <h2>Publicidad</h2>
+      <p><strong>¿Deseas mantenerte informado sobre las últimas novedades y beneficios de nuestro Sistema de Control de Inventarios?</strong></p>
+      
+      <p>Si te interesa, podemos enviarte correos electrónicos con información exclusiva, promociones y actualizaciones relacionadas con el software, para que aproveches al máximo esta solución diseñada para optimizar tu gestión.</p>
+
+      <div class="ad-image" aria-hidden="true">
+        📧
+      </div>
+
+      <div class="actions">
+        <button id="acceptAd" class="btn primary">Aceptar</button>
+        <button id="skipAd" class="btn">Rechazar</button>
+      </div>
+
+      <div class="small muted">Puedes cambiar esta preferencia más tarde en Configuración.</div>
+    </div>
+  </div>
+
+  <!-- <script src="main.js"></script> -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function(){
+      document.getElementById('acceptAd').addEventListener('click', function(){ window.location.href="/dashboard"; });
+      document.getElementById('skipAd').addEventListener('click', function(){ window.location.href="/" });
+    });
+  </script>
+<%- include("templates/footer.ejs") %>

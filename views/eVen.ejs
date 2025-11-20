@@ -1,0 +1,28 @@
+<%- include("templates/header.ejs") %>  
+
+<body class="nuevo">
+    <div class="conten">
+        <header class="logo">
+            <h1>Editar Venta</h1>
+        </header>
+        <div class="contenInt">
+            <form action="/ev" method="post">
+                <input type="hidden" name="id" value="<%= venta._id %>">
+                <Label for = "producto">
+                    Producto:
+                </Label>
+                <input type="hidden" name="idPro" value="<%= venta.idPro %>">
+                <input type="text" name="producto" id="producto" value="<%= venta.nomPro %>" disabled>
+                <br><br>
+                <label for="cliente">Cliente:</label>
+                <input type="hidden" name="idCli" value="<%= venta.idCli %>">
+                <input type="text" name="cliente" id="cliente" value="<%= venta.nomCli %>" disabled>
+                <br></br>
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" placeholder="0" min="1" value="<%= venta.cantidad %>">
+                <br></br>
+                <input type="submit" name="Enviar" id="" class="btn primary">
+            </form>
+        </div>
+    </div>
+<%- include("templates/footer.ejs") %>

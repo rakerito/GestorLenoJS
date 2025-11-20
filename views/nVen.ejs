@@ -1,0 +1,33 @@
+<%- include("templates/header.ejs") %>  
+
+<body class="nuevo">
+    <div class="conten">
+        <header class="logo">
+            <h1>Nueva Venta</h1>
+        </header>
+        <div class="contenInt">
+            <form action="/snv" method="post">
+                <Label for = "producto">
+                    Producto:
+                </Label>
+                <select name="producto" id="producto" class="form-control">
+                    <% pro.forEach((pros)=>{%>
+                        <option value="<%= pros._id %>"><%= pros.producto %></option>
+                    <%})%>
+                </select>
+                <br><br>
+                <label for="cliente">Cliente:</label>
+                <select name="cliente" id="cliente" class="form-control">
+                    <% cli.forEach((clis)=>{%>
+                        <option value="<%= clis._id %>"><%= clis.nombre %></option>
+                    <%})%>
+                </select>
+                <br></br>
+                <label for="cantidad">Cantidad:</label>
+                <input type="number" name="cantidad" id="cantidad" placeholder="0" min="1">
+                <br></br>
+                <input type="submit" name="Enviar" id="" class="btn primary">
+            </form>
+        </div>
+    </div>
+<%- include("templates/footer.ejs") %>

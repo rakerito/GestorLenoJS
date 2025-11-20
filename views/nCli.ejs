@@ -1,0 +1,25 @@
+<%- include("templates/header.ejs") %>  
+
+<body class="nuevo">
+    <div class="conten">
+        <header class="logo">
+            <h1>Nuevo Cliente</h1>
+        </header>
+        <div class="contenInt">
+            <form action="/snc" method="post">
+                <Label for = "nombre">
+                    Nombre:
+                </Label>
+                <input type="text" placeholder="Nombre" id="nombre" name="nombre">
+                <br><br>
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" id="correo" placeholder="xxxx@xxxx.xxx">
+                <br></br>
+                <label for="telefono">Teléfono</label>
+                <input type="text" name="telefono" id="telefono" placeholder="0000000000">
+                <br></br>
+                <input type="submit" name="Enviar" id="" class="btn primary">
+            </form>
+        </div>
+    </div>
+<%- include("templates/footer.ejs") %>

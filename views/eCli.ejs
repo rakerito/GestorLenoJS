@@ -1,0 +1,26 @@
+<%- include("templates/header.ejs") %>  
+
+<body class="nuevo">
+    <div class="conten">
+        <header class="logo">
+            <h1>Nuevo Cliente</h1>
+        </header>
+        <div class="contenInt">
+            <form action="/ec" method="post">
+                <input type="hidden" name="id" value="<%= cliente._id %>">
+                <Label for = "nombre">
+                    Nombre:
+                </Label>
+                <input type="text" placeholder="Nombre" id="nombre" name="nombre" value="<%= cliente.nombre %>">
+                <br><br>
+                <label for="correo">Correo</label>
+                <input type="email" name="correo" id="correo" placeholder="xxxx@xxxx.xxx" value="<%= cliente.correo %>">
+                <br></br>
+                <label for="telefono">Teléfono</label>
+                <input type="text" name="telefono" id="telefono" placeholder="0000000000" value="<%= cliente.telefono %>">
+                <br></br>
+                <input type="submit" name="Enviar" id="" class="btn primary">
+            </form>
+        </div>
+    </div>
+<%- include("templates/footer.ejs") %>

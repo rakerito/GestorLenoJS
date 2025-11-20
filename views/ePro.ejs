@@ -1,0 +1,36 @@
+<%- include("templates/header.ejs") %>  
+<body class="nuevo">
+    <div class="contenSec">
+        <header class="logo">
+            <h1>Editar Producto</h1>
+        </header>
+        <div class="contenIntSec">
+            <form action="/ep" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="id" value="<%= product._id %>">
+                <input type="hidden" name="imagenVi" value="<%= product.imagen %>">
+                <Label for = "producto">
+                    Producto:
+                </Label>
+                <input type="text" placeholder="Producto" id="producto" name="producto" value="<%= product.producto %>">
+                <br><br>
+                <label for="categoria">Categoría</label>
+                <input type="text" name="categoria" id="categoria" placeholder="----------" value="<%= product.categoria %>">
+                <br></br>
+                <label for="existencia">Existencia</label>
+                <input type="number" name="existencia" id="existencia" placeholder="0" value="<%= product.existencia %>">
+                <br></br>
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio" placeholder="$0" value="<%= product.precio %>">
+                <br></br>
+                <label for="proveedor">Proveedor</label>
+                <input type="text" name="proveedor" id="proveedor" placeholder="----------" value="<%= product.proveedor %>">
+                <br></br>
+                <label for="foto">Foto del producto</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="foto" id="foto" accept=".jpg, .jpeg, .png">
+                </div>
+                <input type="submit" name="Enviar" id="" class="btn primary">
+            </form>
+        </div>
+    </div>
+<%- include("templates/footer.ejs") %>

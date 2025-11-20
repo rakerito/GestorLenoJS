@@ -1,0 +1,34 @@
+<%- include("templates/header.ejs") %>  
+<body class="nuevo">
+    <div class="contenSec">
+        <header class="logo">
+            <h1>Nuevo Producto</h1>
+        </header>
+        <div class="contenIntSec">
+            <form action="/snp" method="post" enctype="multipart/form-data">
+                <Label for = "producto">
+                    Producto:
+                </Label>
+                <input type="text" placeholder="Producto" id="producto" name="producto">
+                <br><br>
+                <label for="categoria">Categoría</label>
+                <input type="text" name="categoria" id="categoria" placeholder="----------">
+                <br></br>
+                <label for="existencia">Existencia</label>
+                <input type="number" name="existencia" id="existencia" placeholder="0">
+                <br></br>
+                <label for="precio">Precio</label>
+                <input type="number" name="precio" id="precio" placeholder="$0">
+                <br></br>
+                <label for="proveedor">Proveedor</label>
+                <input type="text" name="proveedor" id="proveedor" placeholder="----------">
+                <br></br>
+                <label for="foto">Foto del producto</label>
+                <div class="input-group mb-3">
+                    <input type="file" class="form-control" name="foto" id="foto" accept=".jpg, .jpeg, .png">
+                </div>
+                <input type="submit" name="Enviar" id="" class="btn primary">
+            </form>
+        </div>
+    </div>
+<%- include("templates/footer.ejs") %>

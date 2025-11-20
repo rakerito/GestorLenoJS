@@ -1,0 +1,29 @@
+<%- include("templates/header.ejs") %>  
+
+<body class="login-page">
+  <main class="container">
+    <header class="logo">
+      <h1>Gestión de Inventarios</h1>
+    </header>
+
+    <form method="post" id="loginForm" class="card" action="/comprobar">
+      <h2 style="text-align: center; color: var(--primary); margin-bottom: 32px;">Iniciar sesión</h2>
+      <div class="form-row">
+        <label for="usuario">Usuario</label>
+        <input id="usuario" name="usuario" type="text" placeholder="Ingrese el usuario" required />
+      </div>
+      <div class="form-row">
+        <label for="password">Contraseña</label>
+        <input id="password" name="password" type="password" placeholder="Ingrese la contraseña" required />
+      </div>
+      <div id="loginError" class="error" aria-live="polite" style="display:none;"></div>
+      <div class="actions">
+        <button type="submit" class="btn primary">Acceder</button>
+        <button type="button" class="btn" onclick="window.location.href='#'">Salir</button>
+      </div>
+      <div class="small muted" style="margin-top: 24px;">
+        ¿No tienes una cuenta? <a href="/crearCuenta" class="link">Crear</a>
+      </div>
+    </form>
+  </main>
+<%- include("templates/footer.ejs") %>
