@@ -248,6 +248,7 @@ export async function borrarUsuario(id) {
 
 //BÚSQUEDAS
 export async function buscarClientes(campo) {
-    const clientesDoc = await usuarios.find(campo)
+    const clientesDoc = await usuarios.find({campo})
     return clientesDoc
 }
+

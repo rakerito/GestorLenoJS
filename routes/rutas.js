@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { cantClientes, cantProductos, enClientes, enProductos, nuevoCliente, nuevoProducto, sumaExistencias, cantProveedores, buscarCliente, buscarProducto, editarCliente, borrarCliente, borrarProducto, editarProductoImagen, borrarImagen2, enVentas, realizarVenta, borrarVenta, buscarVenta, editarVenta, enUsuarios, nuevoUsuario, enUsuarios1, buscarUsuario, elevarUsuario, borrarUsuario } from "../bd/operacionesBD.js"
+import { cantClientes, cantProductos, enClientes, enProductos, nuevoCliente, nuevoProducto, sumaExistencias, cantProveedores, buscarCliente, buscarProducto, editarCliente, borrarCliente, borrarProducto, editarProductoImagen, borrarImagen2, enVentas, realizarVenta, borrarVenta, buscarVenta, editarVenta, enUsuarios, nuevoUsuario, enUsuarios1, buscarUsuario, elevarUsuario, borrarUsuario, buscarClientes } from "../bd/operacionesBD.js"
 import session from "express-session"
 import 'dotenv/config'
 import { subirImgagen } from "../middlewares/subirImagen.js"
@@ -321,8 +321,11 @@ router.get("/crearCuenta", (req, res)=>{
 })
 
 //Búsquedas
-router.post("/bsCli", (req, res)=>{
-    console.log(req.body.bsClie)
+router.post("/bsCli", async (req, res)=>{
+    const clientes = await buscarClientes(req.body.bsClie)
+    if(req.session.inicio == 1){
+        res.render("BuscarCliente", {clientes})
+    }
 })
 
 export default router
