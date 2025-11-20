@@ -323,6 +323,7 @@ router.get("/crearCuenta", (req, res)=>{
 //Búsquedas
 router.post("/bsCli", async (req, res)=>{
     const clientes = await buscarClientes(req.body.bsClie)
+    console.log(clientes)
     if(req.session.inicio == 1){
         res.render("BuscarCliente", {clientes})
     }
