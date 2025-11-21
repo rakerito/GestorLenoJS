@@ -45,8 +45,6 @@ export async function editarVenta({id, idPro, nomPro, idCli, nomCli, cantidad}) 
         cantidad1 = Number(resultado.cantidad);
     var nuevaCant = 0
 
-    console.log(resultado)
-
     if(cantidad1 < cantidad){
         nuevaCant = actualizar - cantidad1
         await Productos.findByIdAndUpdate(idPro, { $inc: { existencia: -nuevaCant } })
@@ -54,8 +52,6 @@ export async function editarVenta({id, idPro, nomPro, idCli, nomCli, cantidad}) 
         nuevaCant = cantidad1 - actualizar
         await Productos.findByIdAndUpdate(idPro, { $inc: { existencia: +nuevaCant } })
     }
-
-    console.log(nuevaCant)
 
     const respuestaMongo = await ventas.findByIdAndUpdate(id, {idPro, nomPro, idCli, nomCli, cantidad})
     return respuestaMongo
@@ -197,8 +193,6 @@ export async function borrarVenta(id) {
     const resultado = await buscarVenta(id),
         idPro = resultado.idPro,
         cantidad = Number(resultado.cantidad);
-
-    console.log(resultado)
 
     await Productos.findByIdAndUpdate(idPro, { $inc: { existencia: +cantidad } })
 

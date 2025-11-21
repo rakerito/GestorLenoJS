@@ -33,10 +33,8 @@ router.post("/comprobar", async (req, res)=>{
                 req.session.inicio = Number(usuario.categoria)
                 res.redirect("/publicidad")
             }else{
-                console.log(user)
                 res.redirect("/")
             }
-            console.log(usuario)
         }else{
             res.redirect("/")
         }
@@ -144,13 +142,11 @@ router.post("/snv", async (req, res) =>{
         nProducto = producto._id,
         nCliente = cliente._id,
         cantidad = Number(req.body.cantidad);
-        console.log(req.body.producto)
     if(req.session.inicio == 1){
         if(cantidad > producto.existencia){
             res.send('<script>alert("Existencia insuficiente"); window.location="/dashboard";</script>')
         }else{
             await realizarVenta(nProducto, nCliente, cantidad)
-            console.log(producto.existencia)
         }
 
         res.redirect("/dashboard")
@@ -254,7 +250,6 @@ router.post("/ep", subirImgagen(), async (req, res) => {
 
 router.post("/ev", async (req, res) => {
     if(req.session.inicio == 1){
-        console.log(req.body)
         const respuestaMongo = await editarVenta(req.body)
 
         res.redirect("/dashboard")
@@ -287,7 +282,6 @@ router.get("/borrarProducto/:id", async (req, res) => {
 router.get("/borrarVenta/:id", async (req, res) => {
     if(req.session.inicio == 1){
         const id = req.params.id
-        console.log(id)
         const respuestaMongo = await borrarVenta(id)
 
         res.redirect("/dashboard")
