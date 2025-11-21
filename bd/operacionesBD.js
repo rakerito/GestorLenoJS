@@ -212,18 +212,29 @@ export async function borrarVenta(id) {
 export async function nuevoUsuario({nombre, correo, contraseña}) {
     const user = 2
     try{
-        const usuario = new usuarios({nombre, correo, contraseña, categoria: user})
+        // Comprobar si ya existe un usuario con ese correo
+        const existente = await usuarios.findOne({ correo: correo })
+        if (existente) {
+            // Ya existe: no crear y devolver cadena vacía como indicador
+            return ""
+        }
+
+        const usuario = new usuarios({ nombre: nombre, correo: correo, contrasena: contraseña, categoria: user })
         const respuestaMongo = await usuario.save()
         return respuestaMongo
-    }catch{
+    }catch(err){
+        console.error('Error en nuevoUsuario:', err.message)
         return ""
     }
 }
 
 export async function enUsuarios(nombre) {
-    console.log(nombre)
-    const usuario = await usuarios.find({nombre: nombre})
-    return usuario
+    try{
+        const usuario = await usuarios.find({nombre: nombre})
+        return usuario
+    }catch{
+        return ""
+    }
 }
 
 export async function enUsuarios1() {
@@ -248,8 +259,25 @@ export async function borrarUsuario(id) {
 
 //BÚSQUEDAS
 export async function buscarClientes(campo) {
-    console.log(campo)
-    const clientesDoc = await Clientes.find({nombre: campo} || {correo: campo})
+    const regex = { $regex: campo, $options: 'i' } 
+    const clientesDoc = await Clientes.find({ $or: [ { nombre: regex }, { telefono: regex }, { correo: regex } ] })
     return clientesDoc
 }
 
+export async function buscarProductos(campo) {
+    const regex = { $regex: campo, $options: 'i' } 
+    const productoDoc = await Productos.find({$or: [{producto: regex}, {categoria: regex},{proveedor:regex}]})
+    return productoDoc
+}
+
+export async function buscarVentas(campo) {
+    const regex = { $regex: campo, $options: 'i' } 
+    const ventasDoc = await ventas.find({$or: [{nomPro: regex}, {nomCli: regex}]})
+    return ventasDoc
+}
+
+export async function buscarUsuarios(campo) {
+    const regex = { $regex: campo, $options: 'i' } 
+    const usuarioDoc = await usuarios.find({$or: [{nombre: regex}, {correo: regex}]})
+    return usuarioDoc
+}

@@ -58,6 +58,11 @@
     <section id="clientes" class="section">
       <h2>Clientes</h2>
       <div class="card">
+        <div class="table-actions">
+          <form action="/bsCli" method="post" style="margin-right: 10px;">
+            <input type="text" placeholder="Buscar" id="bsClie" name="bsClie" >
+          </form>
+        </div>
         <table class="table">
           <thead>
             <tr><th>Nombre</th><th>Correo</th><th>Teléfono</th></tr>
@@ -88,6 +93,11 @@
     <section id="productos" class="section">
       <h2>Gestión de productos</h2>
       <div class="card">
+        <div class="table-actions">
+          <form action="/bsPro" method="post" style="margin-right: 10px;">
+            <input type="text" placeholder="Buscar" id="bsPro" name="bsPro" >
+          </form>
+        </div>
         <table class="table">
           <thead>
             <tr><th>Id</th><th>Foto</th><th>Producto</th><th>Categoría</th><th>Existencia</th><th>Proveedor</th></tr>
@@ -123,6 +133,42 @@
         </table>
       </div>
     </section>
+
+    <section id="ventas" class="section">
+      <h2>Gestión de Ventas</h2>
+      <div class="card">
+        <div class="table-actions">
+          <form action="/bsVen" method="post" style="margin-right: 10px;">
+            <input type="text" placeholder="Buscar" id="bsVen" name="bsVen" >
+          </form>
+        </div>
+        <table class="table">
+          <thead>
+            <tr><th>Producto</th><th>Cliente</th><th>Cantidad</th></tr>
+          </thead>
+          <tbody id="sellsTableBody">
+            <% 
+              ventas.forEach((venta)=>{
+            %>
+              <tr>
+                <td>
+                  <%= venta.nomPro %>
+                </td>
+                <td>
+                  <%= venta.nomCli %>
+                </td>
+                <td>
+                  <%= venta.cantidad %>
+                </td>
+              </tr>
+            <%
+              })
+            %>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
     <footer class="small muted">Sistema de Control de Inventarios v1.0</footer>
   </div>
 <%- include("templates/footer.ejs") %>

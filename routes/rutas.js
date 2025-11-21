@@ -1,5 +1,5 @@
 import {Router} from "express"
-import { cantClientes, cantProductos, enClientes, enProductos, nuevoCliente, nuevoProducto, sumaExistencias, cantProveedores, buscarCliente, buscarProducto, editarCliente, borrarCliente, borrarProducto, editarProductoImagen, borrarImagen2, enVentas, realizarVenta, borrarVenta, buscarVenta, editarVenta, enUsuarios, nuevoUsuario, enUsuarios1, buscarUsuario, elevarUsuario, borrarUsuario, buscarClientes } from "../bd/operacionesBD.js"
+import { cantClientes, cantProductos, enClientes, enProductos, nuevoCliente, nuevoProducto, sumaExistencias, cantProveedores, buscarCliente, buscarProducto, editarCliente, borrarCliente, borrarProducto, editarProductoImagen, borrarImagen2, enVentas, realizarVenta, borrarVenta, buscarVenta, editarVenta, enUsuarios, nuevoUsuario, enUsuarios1, buscarUsuario, elevarUsuario, borrarUsuario, buscarClientes, buscarProductos, buscarUsuarios, buscarVentas } from "../bd/operacionesBD.js"
 import session from "express-session"
 import 'dotenv/config'
 import { subirImgagen } from "../middlewares/subirImagen.js"
@@ -25,10 +25,10 @@ router.post("/comprobar", async (req, res)=>{
         }
     }else{
         const usuario = (await enUsuarios(req.body.usuario))[0]
-        const user = usuario.nombre,
-            contrasena = usuario.contrasena;
-        const password = req.body.password
         if(usuario){
+            const user = usuario.nombre || "",
+                contrasena = usuario.contrasena || "";
+            const password = req.body.password
             if(contrasena == password){
                 req.session.inicio = Number(usuario.categoria)
                 res.redirect("/publicidad")
@@ -323,9 +323,43 @@ router.get("/crearCuenta", (req, res)=>{
 //Búsquedas
 router.post("/bsCli", async (req, res)=>{
     const clientes = await buscarClientes(req.body.bsClie)
-    console.log(clientes)
     if(req.session.inicio == 1){
         res.render("BuscarCliente", {clientes})
+    }else if(req.session.inicio == 2){
+        res.render("BuscarClienteUser", {clientes})
+    }else{
+        res.redirect("/")
+    }
+})
+
+router.post("/bsPro", async (req, res)=>{
+    const productos = await buscarProductos(req.body.bsPro)
+    if(req.session.inicio == 1){
+        res.render("buscarProducto", {productos})
+    }else if(req.session.inicio == 2){
+        res.render("buscarProductoUser", {productos})
+    }else{
+        res.redirect("/")
+    }
+})
+
+router.post("/bsVen", async (req, res)=>{
+    const ventas = await buscarVentas(req.body.bsVen)
+    if(req.session.inicio == 1){
+        res.render("buscarVenta", {ventas})
+    }else if(req.session.inicio == 2){
+        res.render("buscarVentaUser", {ventas})
+    }else{
+        res.redirect("/")
+    }
+})
+
+router.post("/bsUser", async (req, res)=>{
+    const usuarios = await buscarUsuarios(req.body.bsUser)
+    if(req.session.inicio == 1){
+        res.render("buscarUsuario", {usuarios})
+    }else{
+        res.redirect("/")
     }
 })
 
