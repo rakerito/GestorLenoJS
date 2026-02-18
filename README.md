@@ -25,8 +25,10 @@ Se trata de un gestor web construido con **Node.js, Express y EJS**, que impleme
 
 1.- Clonar el repositorio
 git clone https://github.com/rakerito/GestorLenoJS.git
+
 2.- Instalar dependencias
 npm install
+
 3.- Ejecutar la aplicación
 npm start
 
