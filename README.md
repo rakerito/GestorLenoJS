@@ -34,9 +34,14 @@ npm start
 
 ## Autores
 Proyecto realizado en equipo por estudiantes de la Universidad Tecnológica de San Juan del Río:
+
 Eliel Priske Alanis
+
 Yael Meza Polo
+
 Raquel Pastor Gaytán
+
 Eimi Camila Cervantes Izquierdo
+
 
 Materia: Aplicaciones Web Orientadas a Servicios
