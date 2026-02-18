@@ -22,19 +22,16 @@ Se trata de un gestor web construido con **Node.js, Express y EJS**, que impleme
 - `package.json` → Dependencias y configuración.
 
 ## Instalación y uso
-#```bash
-# Clonar el repositorio
+
+1.- Clonar el repositorio
 git clone https://github.com/rakerito/GestorLenoJS.git
-
-# Instalar dependencias
+2.- Instalar dependencias
 npm install
-
-# Ejecutar la aplicación
+3.- Ejecutar la aplicación
 npm start
 
 ## Autores
 Proyecto realizado en equipo por estudiantes de la Universidad Tecnológica de San Juan del Río:
-
 Eliel Priske Alanis
 Yael Meza Polo
 Raquel Pastor Gaytán
